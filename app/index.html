@@ -21,7 +21,7 @@
   <!-- endbuild -->
 
 </head>
-<body ng-app="projectProposalApp" id="app">
+<body ng-app="projectReviewApp" id="app">
   <div class="container-fluid form-step">
     <div class="container page-header">
       <h1>Blue Brain Project - Project Review</h1>
@@ -30,11 +30,18 @@
     <div class="header">
     </div>
 
-    <div>
+    <div class="leftSide" style="visibility:hidden">
+      <!-- placeholder  -->
+      placeholder
+    </div>
+    <div class="middlePart midform">
       <div ui-view></div>
+    </div>
+    <div class="rightSide">
     </div>
 
     <div class="footer">
+
       <div class="container">
         <p></p>
       </div>
@@ -54,7 +61,7 @@
   <script src="bower_components/angular-bbp-config/angular-bbp-config.js"></script>
   <script src="bower_components/bbp-oidc-client/angular-bbp-oidc-client.js"></script>
   <script src="bower_components/marked-hbp/lib/marked.js"></script>
-  <script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
+  <script src="bower_components/angular-filter/dist/angular-filter.js"></script>
   <script src="bower_components/angular-hbp-document-client/dist/angular-hbp-document-client.js"></script>
   <script src="bower_components/angular-uuid4/angular-uuid4.js"></script>
   <script src="bower_components/select2/select2.js"></script>
@@ -75,12 +82,7 @@
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="bower_components/jquery-ui/jquery-ui.js"></script>
   <script src="scripts/app.js"></script>
-  <script src="scripts/controllers/members.js"></script>
   <script src="scripts/controllers/review.js"></script>
-  <script src="scripts/controllers/requirements.js"></script>
-  <script src="scripts/controllers/delivrables.js"></script>
-  <script src="scripts/controllers/summary.js"></script>
-  <script src="scripts/bubble.js"></script>
   <!-- To create date calendar for Firefox and IE -->
 
   <script>

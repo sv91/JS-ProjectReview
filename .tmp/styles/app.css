@@ -162,9 +162,7 @@ label .list-group {
 .leftSide{
   float:left;
   /* Firefox */
-  width: -moz-calc((100% - 744px)/2);
   /* WebKit */
-  width: -webkit-calc((100% - 744px)/2);
   /* Opera */
   width: -o-calc((100% - 744px)/2);
   /* Standard */
@@ -177,9 +175,7 @@ label .list-group {
   padding: 0px 10px 10px;
   float:left;
   /* Firefox */
-  width: -moz-calc((100% - 744px)/2);
   /* WebKit */
-  width: -webkit-calc((100% - 744px)/2);
   /* Opera */
   width: -o-calc((100% - 744px)/2);
   /* Standard */
@@ -257,7 +253,7 @@ hbp-user-selector input.form-control {
 }
 
 .inTwoEmptySeparator{
-  style="width:2%;
+  width:2%;
   vertical-align:top;
 }
 
@@ -466,16 +462,50 @@ textarea{
 
 
 .md-datepicker md-content {
-  padding-bottom: 200px; }
-  .md-datepicker .validation-messages {
-    font-size: 12px;
-    color: #dd2c00;
-    margin: 10px 0 0 25px; }
+  padding-bottom: 200px;
+}
+.md-datepicker .validation-messages {
+  font-size: 12px;
+  color: #dd2c00;
+  margin: 10px 0 0 25px;
+}
 
-    md-datepicker{
-      background: rgba(0,0,0,0);
-    }
+md-datepicker{
+  background: rgba(0,0,0,0);
+}
 
-    .nonePadding {
-      padding-left: 10px;
-    }
+.nonePadding {
+  padding-left: 10px;
+}
+
+.listElement{
+  width:100%;
+  border-style: none solid solid none;
+  border-color:rgba(25,25,25,0.1);
+  border-width: 1px;
+  border-radius: 3px;
+  padding: 10px;
+  display: inline-block;
+}
+
+.evenElementtrue{
+  background-color: rgb(245,245,245);
+}
+
+.evenElementfalse{
+  background-color: rgb(225,225,225);
+}
+
+.typeSquare{
+  float:left;
+  height: 80px;
+  width: 90px;
+  margin-right: 10px;
+  border-right: solid 1px #CCC;
+  padding-right: 10px;
+}
+
+.smallHr{
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
