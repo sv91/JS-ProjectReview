@@ -1,0 +1,15 @@
+<div id="proposal">
+
+  <div class="btn btn-default" onclick="goTo(this);">See more comments</div>
+</div>
+<div id="note">
+  <div class="btn btn-default" onclick="goTo(this);">See more notes</div>
+</div>
+<div id="summary">
+</div>
+
+<script>
+function goTo(div){
+  var _open = window.open(window.location.href +'/'+ div.parentNode.id, "_self");
+}
+</script>
