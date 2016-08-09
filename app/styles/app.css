@@ -513,3 +513,13 @@ md-datepicker{
   margin-top: 5px !important;
   margin-bottom: 5px !important;
 }
+
+.centeredText{
+  width: 100%;
+  text-align: center;
+}
+
+.rightAligned{
+  width: 100%;
+  text-align: right;
+}

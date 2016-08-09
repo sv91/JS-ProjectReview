@@ -9,5 +9,5 @@
 */
 angular.module('projectReviewApp')
 .controller('ReviewCtrl', function ($scope, $stateParams) {
-    $scope.params = $stateParams;
+    $scope.data.params = $stateParams;
 });

@@ -43,7 +43,9 @@ angular
 })
 
 .controller('formController', function ($scope) {
-  $scope.proposals = [
+	$scope.data= {};
+  $scope.data.select = {};
+  $scope.data.proposals = [
     {'name':'Super cool project','type':'0','author':'Author1','picture':'images/bronze.png','startDate':"24/02/2016",'endDate':"21/06/2016",'subDate':"20/01/2016",'proposal':{
   "projectType": "2",
   "pi": {

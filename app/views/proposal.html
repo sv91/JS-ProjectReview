@@ -1,4 +1,4 @@
-<div data-ng-model="summ">
+<div ng-show="data.select.loaded">
   <label>
     Review
   </label><br />
@@ -14,171 +14,171 @@
       <span class="glyphicon glyphicon-minus"></span> Summary
     </label>
     <div ng-show="s">
-      <div class="form-group">
+      <div class="form-group" onclick="updateBubble(this);">
         <label>Project Title</label>
         <div>
-          <input type="text" readonly required value="{{prop.projectTitle}}">
+          <input type="text" readonly value="{{data.select.projectTitle}}">
         </div>
       </div>
 
       <table width="100%">
         <td class="inTwo">
-          <div class="form-group">
+          <div class="form-group" onclick="updateBubble(this);">
             <label>Project Start Date</label><br />
-            <input type="date" readonly required value="{{prop.projectStartDate | date:'yyyy-MM-dd'}}">
+            <input type="date" readonly value="{{data.select.projectStartDate | date:'yyyy-MM-dd'}}">
           </div>
         </td>
         <td class="inTwoEmptySeparator">
         </td>
         <td class="inTwo">
-          <div class="form-group">
+          <div class="form-group" onclick="updateBubble(this);">
             <label>Project End Date</label><br />
-            <input type="date" readonly required value="{{prop.projectEndDate | date:'yyyy-MM-dd'}}">
+            <input type="date" readonly value="{{data.select.projectEndDate | date:'yyyy-MM-dd'}}">
           </div>
         </td>
       </table>
-      <div class="form-group" ng-class="{hideOld: prop.newproject!='false'}">
+      <div ng-class="{hideOld: data.select.newproject!='false'}">
         <label>New project</label><br />
-        <div class="form-group">
-          <div class="form-group">
+        <div>
+          <div class="form-group" onclick="updateBubble(this);">
             <label>Previous Project Title</label>
             <div>
-              <input type="text" readonly value="{{prop.previousProject.title}}">
+              <input type="text" readonly value="{{data.select.previousProject.title}}">
             </div>
           </div><!-- project Title -->
-          <div class="form-group">
+          <div class="form-group" onclick="updateBubble(this);">
             <label>Previous Project ID</label>
             <div>
-              <input type="text" readonly value="{{prop.previousProject.id}}">
+              <input type="text" readonly value="{{data.select.previousProject.id}}">
             </div>
           </div><!-- project Title -->
-          <div class="form-group">
+          <div class="form-group" onclick="updateBubble(this);">
             <label>Previous Project Principal Investigator</label>
             <div>
-              <input type="text" readonly value="{{prop.previousProject.pi}}">
+              <input type="text" readonly value="{{data.select.previousProject.pi}}">
             </div>
           </div>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" onclick="updateBubble(this);">
         <label>Grants</label>
-        <ul ng-show="prop.grants.length">
-          <li ng-repeat="grant in prop.grants">{{grant}}</li>
+        <ul ng-show="data.select.grants.length">
+          <li ng-repeat="grant in data.select.grants">{{grant}}</li>
         </ul>
-        <span ng-hide="prop.grants.length" class="nonePadding"><br />None<br /></span>
-        </div>
+        <span ng-hide="data.select.grants.length" class="nonePadding"><br />None<br /></span>
+      </div>
 
-        <div class="form-group">
-          <label>Tasks</label>
-          <ul ng-show="prop.tasks.length">
-            <li ng-repeat="tasks in prop.tasks">{{tasks.name}} - <i>{{tasks.grant}}</i></li>
-          </ul>
-          <span ng-hide="prop.tasks.length" class="nonePadding"><br />None<br /></span>
-        </div>
+      <div class="form-group" onclick="updateBubble(this);">
+        <label>Tasks</label>
+        <ul ng-show="data.select.tasks.length">
+          <li ng-repeat="tasks in data.select.tasks">{{tasks.name}} - <i>{{tasks.grant}}</i></li>
+        </ul>
+        <span ng-hide="data.select.tasks.length" class="nonePadding"><br />None<br /></span>
+      </div>
 
-        <div class="form-group" ng-class="{hideOld: prop.newproject!='false'}">
-          <label>Project Key Words</label>
-          <ul ng-show="prop.tags.length">
-            <li ng-repeat="tag in prop.tags">{{tag}}</li>
-          </ul>
-          <span ng-hide="prop.tags.length" class="nonePadding"><br />None<br /></span>
-        </div>
+      <div class="form-group" onclick="updateBubble(this);" ng-class="{hideOld: data.select.newproject!='false'}">
+        <label>Project Key Words</label>
+        <ul ng-show="data.select.tags.length">
+          <li ng-repeat="tag in data.select.tags">{{tag}}</li>
+        </ul>
+        <span ng-hide="data.select.tags.length" class="nonePadding"><br />None<br /></span>
+      </div>
 
-        <div class="form-group">
-          <label>Executive Summary</label>
-          <div>
-            <textarea readonly required value="{{prop.executiveSummary}}"></textarea>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Impact Statement</label>
-          <div>
-            <textarea readonly required value="{{prop.impactStatement}}"></textarea>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Benefit to Community</label>
-          <div>
-            <textarea readonly required value="{{prop.benefitToCommunity}}"></textarea>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Scientific Summary</label>
-          <div>
-            <textarea readonly required value="{{prop.scientificSummary}}"></textarea>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Technological Summary</label>
-          <div>
-            <textarea readonly required value="{{prop.technologicalSummary}}"></textarea>
-          </div>
-        </div>
-
-        <div class="form-group" ng-show="prop.publications.length">
-          <label>Publications</label>
-          <ul>
-            <li ng-repeat="pub in prop.publications" ng-show="pub.name">{{pub.name}}<span ng-show="pub.link">{{pub.link}}</span></li>
-          </ul>
-        </div>
-
-
-        <div class="form-group" ng-show="prop.relatedProjects.length">
-          <label>Related Projects</label>
-          <ul>
-            <li ng-repeat="proj in prop.relatedProjects" ng-show="proj.name"><b>{{proj.name}}</b> <br />{{proj.startDate| date:'EEE. dd MMM. yy'}} - {{proj.endDate| date:'EEE. dd MMM. yy'}}<br /> <i>{{proj.description}}</i></li>
-          </ul>
+      <div class="form-group" onclick="updateBubble(this);">
+        <label>Executive Summary</label>
+        <div>
+          <textarea readonly>{{data.select.executiveSummary}}</textarea>
         </div>
       </div>
-      <hr />
 
-      <input id="r" type="checkbox" class="plusMinus" ng-model="r">
-      <label for="r" class="css-label"><span class="glyphicon glyphicon-plus"></span>
-        <span class="glyphicon glyphicon-minus"></span> Requirements
-      </label>
-      <div ng-show="r">
-        <div class="form-group">
-          <label>Usecase</label>
-          <div>
-            <textarea readonly>{{prop.usecase}}</textarea>
-          </div>
-          <div class="form-group" ng-show="prop.requirements.length">
-            <label>Requirements</label>
-            <ul>
-              <li ng-repeat="req in prop.requirements" ng-show="req.title"><b>[{{req.type.name}}] <i>{{req.title}}</i></b> <br />
-                <u>Definition:</u> {{req.requirement}}<br />
-                <span ng-show="prop.projectType >= 1"><u>Feature of interest:</u> {{req.feature}}<br /></span>
-                <div class="form-group" ng-show="req.input.length">
+      <div class="form-group" onclick="updateBubble(this);">
+        <label>Impact Statement</label>
+        <div>
+          <textarea readonly>{{data.select.impactStatement}}</textarea>
+        </div>
+      </div>
+
+      <div class="form-group" onclick="updateBubble(this);">
+        <label>Benefit to Community</label>
+        <div>
+          <textarea readonly>{{data.select.benefitToCommunity}}</textarea>
+        </div>
+      </div>
+
+      <div class="form-group" onclick="updateBubble(this);">
+        <label>Scientific Summary</label>
+        <div>
+          <textarea readonly>{{data.select.scientificSummary}}</textarea>
+        </div>
+      </div>
+
+      <div class="form-group" onclick="updateBubble(this);">
+        <label>Technological Summary</label>
+        <div>
+          <textarea readonly>{{data.select.technologicalSummary}}</textarea>
+        </div>
+      </div>
+
+      <div class="form-group" onclick="updateBubble(this);" ng-show="data.select.publications.length">
+        <label>Publications</label>
+        <ul>
+          <li ng-repeat="pub in data.select.publications" ng-show="pub.name">{{pub.name}}<span ng-show="pub.link">{{pub.link}}</span></li>
+        </ul>
+      </div>
+
+
+      <div class="form-group" onclick="updateBubble(this);" ng-show="data.select.relatedProjects.length">
+        <label>Related Projects</label>
+        <ul>
+          <li ng-repeat="proj in data.select.relatedProjects" ng-show="proj.name"><b>{{proj.name}}</b> <br />{{proj.startDate| date:'EEE. dd MMM. yy'}} - {{proj.endDate| date:'EEE. dd MMM. yy'}}<br /> <i>{{proj.description}}</i></li>
+        </ul>
+      </div>
+    </div>
+    <hr />
+
+    <input id="r" type="checkbox" class="plusMinus" ng-model="r">
+    <label for="r" class="css-label"><span class="glyphicon glyphicon-plus"></span>
+      <span class="glyphicon glyphicon-minus"></span> Requirements
+    </label>
+    <div ng-show="r">
+      <div>
+        <label>Usecase</label>
+        <div class="form-group" onclick="updateBubble(this);">
+          <textarea readonly>{{data.select.usecase}}</textarea>
+        </div>
+        <div class="form-group" onclick="updateBubble(this);" ng-show="data.select.requirements.length">
+          <label>Requirements</label>
+          <ul>
+            <li ng-repeat="req in data.select.requirements" ng-show="req.title"><b>[{{req.type.name}}] <i>{{req.title}}</i></b> <br />
+              <u>Definition:</u> {{req.requirement}}<br />
+              <span ng-show="data.select.projectType >= 1"><u>Feature of interest:</u> {{req.feature}}<br /></span>
+              <div class="form-group" onclick="updateBubble(this);" ng-show="req.input.length">
                 <u>Inputs:</u>
                 <ul>
-                <li ng-repeat="inp in req.input">[{{inp.format.name}}] <i>{{inp.tag}}</i><br>
-                  {{inp.number}} artifacts of size: {{inp.size}}
-                </li>
-              </ul>
+                  <li ng-repeat="inp in req.input">[{{inp.format.name}}] <i>{{inp.tag}}</i><br>
+                    {{inp.number}} artifacts of size: {{inp.size}}
+                  </li>
+                </ul>
               </div>
-              <div class="form-group" ng-show="req.output.length">
-              <u>Outputs:</u>
-              <ul>
-              <li ng-repeat="out in req.output">[{{out.format.name}}] <i>{{out.tag}}</i><br>
-                {{out.number}} artifacts of size: {{out.size}}
-              </li>
-            </ul>
-            </div>
-              </li>
-            </ul>
-          </div>
+              <div class="form-group" onclick="updateBubble(this);" ng-show="req.output.length">
+                <u>Outputs:</u>
+                <ul>
+                  <li ng-repeat="out in req.output">[{{out.format.name}}] <i>{{out.tag}}</i><br>
+                    {{out.number}} artifacts of size: {{out.size}}
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
+    </div>
 
 
-        <hr />
+    <hr />
 
-<div ng-show="prop.projectType >= 1" >
+    <div ng-show="data.select.projectType >= 1" >
       <input id="comp" type="checkbox" class="plusMinus" ng-model="comp">
       <label for="comp" class="css-label"><span class="glyphicon glyphicon-plus"></span>
         <span class="glyphicon glyphicon-minus"></span> Computing, Storage and Services resources
@@ -243,23 +243,23 @@
         </div>
         <div class="p10-5">
           <label>Infrastructure as a Service (IaaS)</label>
-          <div ng-show="prop.projectType == 1" >
-            <table width="100%" class="hpcList p10" ng-show="prop.projectType == 1" >
+          <div ng-show="data.select.projectType == 1" >
+            <table width="100%" class="hpcList p10" ng-show="data.select.projectType == 1" >
               <td class="inTwo">
-                <div class="form-group">
-                    <input type="checkbox" ng-model="summ.hpcRessource" disabled="disabled"> HPC Ressources
+                <div class="form-group" onclick="updateBubble(this);">
+                  <input type="checkbox" ng-model="summ.hpcRessource" disabled="disabled"> HPC Ressources
                 </div>
               </td>
               <td class="inTwoEmptySeparator">
               </td>
               <td class="inTwo">
-                <div class="form-group">
-                    <input type="checkbox" ng-model="summ.cloudRessource" disabled="disabled"> Cloud Ressources
+                <div class="form-group" onclick="updateBubble(this);">
+                  <input type="checkbox" ng-model="summ.cloudRessource" disabled="disabled"> Cloud Ressources
                 </div>
               </td>
             </table>
           </div>
-          <div class="p10" ng-show="prop.projectType >= 2" >
+          <div class="p10" ng-show="data.select.projectType >= 2" >
             <u>System Architectures</u>
             <ul ng-show="summ.architecture.length">
               <li ng-repeat="tasks in summ.architecture">{{tasks.name}}</li>
@@ -358,9 +358,9 @@
         </div>
       </div>
       <hr />
-</div>
+    </div>
 
-<div ng-show="prop.projectType >= 1" >
+    <div ng-show="data.select.projectType >= 1" >
       <input id="hr" type="checkbox" class="plusMinus" ng-model="hr">
       <label for="hr" class="css-label"><span class="glyphicon glyphicon-plus"></span>
         <span class="glyphicon glyphicon-minus"></span> Human resources
@@ -393,280 +393,274 @@
     </div>
   </div>
 
-    <hr />
+  <hr />
 
-    <div data-ng-model="summ.deliverables">
-      <div ng-repeat="deli in summ.deliverables">
-        <input id="deli{{$index}}" type="checkbox" class="plusMinus" ng-model="deli.summaryShow">
-        <label for="deli{{$index}}" class="css-label"><span class="glyphicon glyphicon-plus"></span>
-          <span class="glyphicon glyphicon-minus"></span> Deliverable {{deli.name}}
+  <div data-ng-model="summ.deliverables">
+    <div ng-repeat="deli in summ.deliverables">
+      <input id="deli{{$index}}" type="checkbox" class="plusMinus" ng-model="deli.summaryShow">
+      <label for="deli{{$index}}" class="css-label"><span class="glyphicon glyphicon-plus"></span>
+        <span class="glyphicon glyphicon-minus"></span> Deliverable {{deli.name}}
+      </label>
+      <div class="p10" ng-show="deli.summaryShow">
+        <input id="deli{{$index}}-summ" type="checkbox" class="plusMinus" ng-model="deli.info">
+        <label for="deli{{$index}}-summ" class="css-label"><span class="glyphicon glyphicon-plus"></span>
+          <span class="glyphicon glyphicon-minus"></span> Summary
         </label>
-        <div class="p10" ng-show="deli.summaryShow">
-          <input id="deli{{$index}}-summ" type="checkbox" class="plusMinus" ng-model="deli.info">
-          <label for="deli{{$index}}-summ" class="css-label"><span class="glyphicon glyphicon-plus"></span>
-            <span class="glyphicon glyphicon-minus"></span> Summary
-          </label>
-          <div ng-show="deli.info">
-            <div class="form-group">
-              <label>Name</label>
-              <div>
-                <input type="text" readonly required value="{{deli.name}}">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label>Delivery Date</label><br />
-              <input type="date" readonly required value="{{deli.date | date:'yyyy-MM-dd'}}">
-            </div>
-
-            <div class="form-group">
-              <label>Description</label>
-              <div>
-                <textarea readonly value="{{deli.desc}}"></textarea>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label>Risks</label>
-              <div>
-                <input type="text" readonly value="{{deli.risks}}">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label>Deliverable Dependencies</label>
-              <ul ng-show="deli.dependency.length">
-                <li ng-repeat="dep in deli.dependency">{{dep}}</li>
-              </ul>
-              <span ng-hide="deli.dependency.length" class="nonePadding"><br />None<br /></span>
-            </div>
-
-            <div class="form-group">
-              <label>Requirement Dependencies</label>
-              <ul ng-show="deli.requirements.length">
-                <li ng-repeat="dep in deli.requirements">{{dep}}</li>
-              </ul>
-              <span ng-hide="deli.requirements.length" class="nonePadding"><br />None<br /></span>
+        <div ng-show="deli.info">
+          <div class="form-group" onclick="updateBubble(this);">
+            <label>Name</label>
+            <div>
+              <input type="text" readonly value="{{deli.name}}">
             </div>
           </div>
-          <hr />
 
-          <input id="deli{{$index}}-comp" type="checkbox" class="plusMinus" ng-model="deli.compInfo">
-          <label for="deli{{$index}}-comp" class="css-label"><span class="glyphicon glyphicon-plus"></span>
-            <span class="glyphicon glyphicon-minus"></span> Computing, Storage and Services resources
-          </label>
-          <div ng-show="deli.compInfo">
-            <div class="p10-5">
-              <label>Software as a Service (SaaS)</label>
-              <div class="p10">
-                <table width="100%">
-                  <tr>
-                    <td class="inTwo">
-                      <u>Software development</u>
-                      <ul ng-show="deli.softdev.length">
-                        <li ng-repeat="soft in deli.softdev">{{soft.name}}</li>
-                      </ul>
-                      <span ng-hide="deli.softdev.length" class="nonePadding"><br />None<br /></span>
-                    </td>
-                    <td class="inTwoEmptySeparator">
-                    </td>
-                    <td class="inTwo">
-                      <u>Data Transfer</u>
-                      <ul ng-show="deli.datatransfer.length">
-                        <li ng-repeat="collab in deli.datatransfer">{{datatransfer.name}}</li>
-                      </ul>
-                      <span ng-hide="deli.datatransfer.length" class="nonePadding"><br />None<br /></span>
-                    </td>
-                  </tr>
-                </table>
-                <u>HBP Collab</u>
-                <ul ng-show="deli.collabs.length">
-                  <li ng-repeat="collab in deli.collabs">{{collab.title}}</li>
-                </ul>
-                <span ng-hide="deli.collabs.length" class="nonePadding"><br />None<br /></span>
-              </div>
+          <div class="form-group" onclick="updateBubble(this);">
+            <label>Delivery Date</label><br />
+            <input type="date" readonly value="{{deli.date | date:'yyyy-MM-dd'}}">
+          </div>
+
+          <div class="form-group" onclick="updateBubble(this);">
+            <label>Description</label>
+            <div>
+              <textarea readonly>{{deli.desc}}</textarea>
             </div>
-            <div class="p10-5">
-              <label>Platform as a Service (PaaS)</label>
-              <div class="p10">
-                <table width="100%">
-                  <tr>
-                    <td class="inTwo">
-                      <u>Virtualization</u>
-                      <ul ng-show="deli.virtualization.length">
-                        <li ng-repeat="soft in deli.virtualization">{{soft.name}}</li>
-                      </ul>
-                      <span ng-hide="deli.virtualization.length" class="nonePadding"><br />None<br /></span>
-                    </td>
-                    <td class="inTwoEmptySeparator">
-                    </td>
-                    <td class="inTwo">
-                      <u>Development Environment</u>
-                      <ul ng-show="deli.devenv.length">
-                        <li ng-repeat="collab in deli.devenv">{{datatransfer.name}}</li>
-                      </ul>
-                      <span ng-hide="deli.devenv.length" class="nonePadding"><br />None<br /></span>
-                    </td>
-                  </tr>
-                </table>
-              </div>
+          </div>
+
+          <div class="form-group" onclick="updateBubble(this);">
+            <label>Risks</label>
+            <div>
+              <input type="text" readonly value="{{deli.risks}}">
             </div>
-            <div class="p10-5">
-              <label>Infrastructure as a Service (IaaS)</label>
-              <div ng-show="prop.projectType == 1" >
-                <table width="100%" class="hpcList p10" ng-show="prop.projectType == 1" >
+          </div>
+
+          <div class="form-group" onclick="updateBubble(this);">
+            <label>Deliverable Dependencies</label>
+            <ul ng-show="deli.dependency.length">
+              <li ng-repeat="dep in deli.dependency">{{dep}}</li>
+            </ul>
+            <span ng-hide="deli.dependency.length" class="nonePadding"><br />None<br /></span>
+          </div>
+
+          <div class="form-group" onclick="updateBubble(this);">
+            <label>Requirement Dependencies</label>
+            <ul ng-show="deli.requirements.length">
+              <li ng-repeat="dep in deli.requirements">{{dep}}</li>
+            </ul>
+            <span ng-hide="deli.requirements.length" class="nonePadding"><br />None<br /></span>
+          </div>
+        </div>
+        <hr />
+
+        <input id="deli{{$index}}-comp" type="checkbox" class="plusMinus" ng-model="deli.compInfo">
+        <label for="deli{{$index}}-comp" class="css-label"><span class="glyphicon glyphicon-plus"></span>
+          <span class="glyphicon glyphicon-minus"></span> Computing, Storage and Services resources
+        </label>
+        <div ng-show="deli.compInfo">
+          <div class="p10-5">
+            <label>Software as a Service (SaaS)</label>
+            <div class="p10">
+              <table width="100%">
+                <tr>
                   <td class="inTwo">
-                    <div class="form-group">
-                        <input type="checkbox" ng-model="deli.hpcRessource" disabled="disabled"> HPC Ressources
-                    </div>
+                    <u>Software development</u>
+                    <ul ng-show="deli.softdev.length">
+                      <li ng-repeat="soft in deli.softdev">{{soft.name}}</li>
+                    </ul>
+                    <span ng-hide="deli.softdev.length" class="nonePadding"><br />None<br /></span>
                   </td>
                   <td class="inTwoEmptySeparator">
                   </td>
                   <td class="inTwo">
-                    <div class="form-group">
-                        <input type="checkbox" ng-model="deli.cloudRessource" disabled="disabled"> Cloud Ressources
-                    </div>
-                  </td>
-                </table>
-              </div>
-              <div class="p10" ng-show="prop.projectType >= 2" >
-                <u>Prefered Architecture</u>
-                <ul ng-show="deli.architecture.length">
-                  <li ng-repeat="tasks in deli.architecture">{{tasks.name}}</li>
-                </ul>
-                <span ng-hide="deli.architecture.length" class="nonePadding"><br />None<br /></span>
-                <br />
-                <table width="100%" style="padding-top:15px;"><tr>
-                  <td class="inTwo">
-                    <u>HPC Computing</u>
-                    <div class="p10 form-group">
-                      <u>Total number of runs</u>
-                      <input type="number" readonly ng-model="
-                      deli.hpc.runs
-                      ">
-                      <u>Average partition size (Number of processors)</u>
-                      <input type="number" readonly ng-model="
-                      deli.hpc.partition
-                      ">
-                      <u>Time to solution (In hours)</u>
-                      <input type="number" readonly ng-model="
-                      deli.hpc.time
-                      ">
-                    </div>
-                  </td>
-                  <td class="inTwoEmptySeparator">
-                  </td>
-                  <td class="inTwo">
-                    <u>HPC Storage</u>
-                    <div class="p10 form-group">
-                      <u>Number of artefacts</u>
-                      <input type="number" readonly ng-model="
-                      deli.hpc.numarte
-                      ">
-                      <u>Average size of artefacts (in GB)</u>
-                      <input type="number" readonly ng-model="
-                      deli.hpc.sizearte
-                      ">
-                    </div>
+                    <u>Data Transfer</u>
+                    <ul ng-show="deli.datatransfer.length">
+                      <li ng-repeat="collab in deli.datatransfer">{{datatransfer.name}}</li>
+                    </ul>
+                    <span ng-hide="deli.datatransfer.length" class="nonePadding"><br />None<br /></span>
                   </td>
                 </tr>
               </table>
-
-              <u>Prefered Cloud Architecture</u>
-              <ul ng-show="deli.architectureC.length">
-                <li ng-repeat="tasks in deli.architectureC">{{tasks.name}}</li>
+              <u>HBP Collab</u>
+              <ul ng-show="deli.collabs.length">
+                <li ng-repeat="collab in deli.collabs">{{collab.title}}</li>
               </ul>
-              <span ng-hide="deli.architectureC.length" class="nonePadding"><br />None<br /></span>
-              <br />
-              <table>
+              <span ng-hide="deli.collabs.length" class="nonePadding"><br />None<br /></span>
+            </div>
+          </div>
+          <div class="p10-5">
+            <label>Platform as a Service (PaaS)</label>
+            <div class="p10">
+              <table width="100%">
                 <tr>
                   <td class="inTwo">
-                    <u>Cloud Computing</u>
-                    <div class="p10 form-group">
-                      <u>Total number of runs</u>
-                      <input type="number" readonly ng-model="
-                      deli.cloud.runs
-                      ">
-                      <u>Average partition size (Number of processors)</u>
-                      <input type="number" readonly ng-model="
-                      deli.cloud.partition
-                      ">
-                      <u>Time to solution (In hours)</u>
-                      <input type="number" readonly ng-model="
-                      deli.cloud.time
-                      ">
-                    </div>
+                    <u>Virtualization</u>
+                    <ul ng-show="deli.virtualization.length">
+                      <li ng-repeat="soft in deli.virtualization">{{soft.name}}</li>
+                    </ul>
+                    <span ng-hide="deli.virtualization.length" class="nonePadding"><br />None<br /></span>
                   </td>
                   <td class="inTwoEmptySeparator">
                   </td>
                   <td class="inTwo">
-                    <u>Cloud Storage</u>
-                    <div class="p10 form-group">
-                      <u>Number of artefacts</u>
-                      <input type="number" readonly ng-model="
-                      deli.cloud.numarte
-                      ">
-                      <u>Average size of artefacts (in GB)</u>
-                      <input type="number" readonly ng-model="
-                      deli.cloud.sizearte
-                      ">
-                    </div>
+                    <u>Development Environment</u>
+                    <ul ng-show="deli.devenv.length">
+                      <li ng-repeat="collab in deli.devenv">{{datatransfer.name}}</li>
+                    </ul>
+                    <span ng-hide="deli.devenv.length" class="nonePadding"><br />None<br /></span>
                   </td>
                 </tr>
               </table>
             </div>
           </div>
           <div class="p10-5">
-            <label>Hardware as a Service (HaaS)</label>
-            <ul ng-show="deli.hardware.length">
-              <li ng-repeat="hard in deli.hardware"><b>{{hard.name}}</b>: {{hard.description}}<br />Price: {{hard.price}} CHF<br />{{hard.link}}</li>
-            </ul>
-            <span ng-hide="deli.hardware.length" class="nonePadding"><br />None<br /></span>
-          </div>
-        </div>
-
-        <hr />
-
-        <input id="deli{{$index}}-hr" type="checkbox" class="plusMinus" ng-model="deli.hr">
-        <label for="deli{{$index}}-hr" class="css-label"><span class="glyphicon glyphicon-plus"></span>
-          <span class="glyphicon glyphicon-minus"></span> Human resources
-        </label>
-        <div ng-show="deli.hr">
-          <table>
-            <td class="inTwo">
-              <label>Name</label>
-            </td>
-            <td class="inTwo">
-              <label>Total Person/Month</label>
-            </td>
-          </table>
-          <div class="memberList" data-ng-model="deli.members">
-            <div ng-repeat="member in deli.members">
-              <table>
+            <label>Infrastructure as a Service (IaaS)</label>
+            <div ng-show="data.select.projectType == 1" >
+              <table width="100%" class="hpcList p10" ng-show="data.select.projectType == 1" >
                 <td class="inTwo">
-                  {{member.name}}
+                  <div class="form-group" onclick="updateBubble(this);">
+                    <input type="checkbox" ng-model="deli.hpcRessource" disabled="disabled"> HPC Ressources
+                  </div>
+                </td>
+                <td class="inTwoEmptySeparator">
                 </td>
                 <td class="inTwo">
-                  <input type="number" readonly class=""
-                  ng-model="member.pm">
+                  <div class="form-group" onclick="updateBubble(this);">
+                    <input type="checkbox" ng-model="deli.cloudRessource" disabled="disabled"> Cloud Ressources
+                  </div>
                 </td>
               </table>
             </div>
+            <div class="p10" ng-show="data.select.projectType >= 2" >
+              <u>Prefered Architecture</u>
+              <ul ng-show="deli.architecture.length">
+                <li ng-repeat="tasks in deli.architecture">{{tasks.name}}</li>
+              </ul>
+              <span ng-hide="deli.architecture.length" class="nonePadding"><br />None<br /></span>
+              <br />
+              <table width="100%" style="padding-top:15px;"><tr>
+                <td class="inTwo">
+                  <u>HPC Computing</u>
+                  <div class="p10 form-group">
+                    <u>Total number of runs</u>
+                    <input type="number" readonly ng-model="
+                    deli.hpc.runs
+                    ">
+                    <u>Average partition size (Number of processors)</u>
+                    <input type="number" readonly ng-model="
+                    deli.hpc.partition
+                    ">
+                    <u>Time to solution (In hours)</u>
+                    <input type="number" readonly ng-model="
+                    deli.hpc.time
+                    ">
+                  </div>
+                </td>
+                <td class="inTwoEmptySeparator">
+                </td>
+                <td class="inTwo">
+                  <u>HPC Storage</u>
+                  <div class="p10 form-group">
+                    <u>Number of artefacts</u>
+                    <input type="number" readonly ng-model="
+                    deli.hpc.numarte
+                    ">
+                    <u>Average size of artefacts (in GB)</u>
+                    <input type="number" readonly ng-model="
+                    deli.hpc.sizearte
+                    ">
+                  </div>
+                </td>
+              </tr>
+            </table>
+
+            <u>Prefered Cloud Architecture</u>
+            <ul ng-show="deli.architectureC.length">
+              <li ng-repeat="tasks in deli.architectureC">{{tasks.name}}</li>
+            </ul>
+            <span ng-hide="deli.architectureC.length" class="nonePadding"><br />None<br /></span>
+            <br />
+            <table>
+              <tr>
+                <td class="inTwo">
+                  <u>Cloud Computing</u>
+                  <div class="p10 form-group">
+                    <u>Total number of runs</u>
+                    <input type="number" readonly ng-model="
+                    deli.cloud.runs
+                    ">
+                    <u>Average partition size (Number of processors)</u>
+                    <input type="number" readonly ng-model="
+                    deli.cloud.partition
+                    ">
+                    <u>Time to solution (In hours)</u>
+                    <input type="number" readonly ng-model="
+                    deli.cloud.time
+                    ">
+                  </div>
+                </td>
+                <td class="inTwoEmptySeparator">
+                </td>
+                <td class="inTwo">
+                  <u>Cloud Storage</u>
+                  <div class="p10 form-group">
+                    <u>Number of artefacts</u>
+                    <input type="number" readonly ng-model="
+                    deli.cloud.numarte
+                    ">
+                    <u>Average size of artefacts (in GB)</u>
+                    <input type="number" readonly ng-model="
+                    deli.cloud.sizearte
+                    ">
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="p10-5">
+          <label>Hardware as a Service (HaaS)</label>
+          <ul ng-show="deli.hardware.length">
+            <li ng-repeat="hard in deli.hardware"><b>{{hard.name}}</b>: {{hard.description}}<br />Price: {{hard.price}} CHF<br />{{hard.link}}</li>
+          </ul>
+          <span ng-hide="deli.hardware.length" class="nonePadding"><br />None<br /></span>
+        </div>
+      </div>
+
+      <hr />
+
+      <input id="deli{{$index}}-hr" type="checkbox" class="plusMinus" ng-model="deli.hr">
+      <label for="deli{{$index}}-hr" class="css-label"><span class="glyphicon glyphicon-plus"></span>
+        <span class="glyphicon glyphicon-minus"></span> Human resources
+      </label>
+      <div ng-show="deli.hr">
+        <table>
+          <td class="inTwo">
+            <label>Name</label>
+          </td>
+          <td class="inTwo">
+            <label>Total Person/Month</label>
+          </td>
+        </table>
+        <div class="memberList" data-ng-model="deli.members">
+          <div ng-repeat="member in deli.members">
+            <table>
+              <td class="inTwo">
+                {{member.name}}
+              </td>
+              <td class="inTwo">
+                <input type="number" readonly class=""
+                ng-model="member.pm">
+              </td>
+            </table>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div style="visibility:hidden"><input type="text" id="hidden" ng-model="prop.projectType"></div>
-  <script>
-  document.getElementById("final").style="";
+</div>
+</div>
 
-  setTimeout(function() {
-  var type = document.getElementById("hidden").value;
-  if (type >= 1){
-  updateLinks("deliverables","");
-  } else if (type == 0){
-  updateLinks("requirements","");
-  }
-},300);
-  </script>
+<div ng-hide="data.select.loaded">
+  <label>ERROR!</label><br />
+  An error appeared during the loading of this proposal.<br />
+  Please try reloading the page, if the problem persists contact an administrator of the website.
+</div>
